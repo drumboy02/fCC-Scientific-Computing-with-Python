@@ -80,8 +80,17 @@ def create_spend_chart(categories):
             print(p)
         # print('len', len(p), p)
         # print(str(n) + '|')
+    total_spent = 0
     for category in categories:
-        print(category.name, category.balance)
+        cname = category.name
+        cbalance = category.balance
+        cledger = category.ledger
+        # print(cname, cbalance)
+        for item in cledger:
+            if item['amount'] < 0:
+                if item['description'][0:8] != 'Transfer':
+                    total_spent += item['amount']
+    print('total_spent', total_spent)
     # bar chart
     # chart shows the % spent in each category
     # % calculated with withdraws only and will
@@ -131,6 +140,12 @@ food.transfer(50, clothing)
 print(food)
 
 clothing = Category('Clothing')
+clothing.deposit(200, 'initial deposit')
+clothing.withdraw(100, 'shoes')
+
 auto = Category('Auto')
+auto.deposit(150, 'initial deposit')
+auto.withdraw(65, 'gas')
+auto.transfer(16, food)
 
 print(create_spend_chart([food, clothing, auto]))
