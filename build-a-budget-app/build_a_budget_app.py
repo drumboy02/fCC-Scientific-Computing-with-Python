@@ -71,7 +71,17 @@ class Category:
 
 def create_spend_chart(categories):
     result = 'Percentage spent by category'
-    
+    print(result)
+    for n in range(100, -1, -10):
+        p = str(n)
+        while len(p) < 4:
+            # print(' ' * (3 - len(p)) + p + '|')
+            p = ' ' * (3 - len(p)) + p + '|'
+            print(p)
+        # print('len', len(p), p)
+        # print(str(n) + '|')
+    for category in categories:
+        print(category.name, category.balance)
     # bar chart
     # chart shows the % spent in each category
     # % calculated with withdraws only and will
@@ -86,7 +96,7 @@ def create_spend_chart(categories):
 
     # category names vertically below bar    
 
-    return result
+    return ''
 
 '''
 Percentage spent by category
@@ -120,3 +130,7 @@ clothing = Category('Clothing')
 food.transfer(50, clothing)
 print(food)
 
+clothing = Category('Clothing')
+auto = Category('Auto')
+
+print(create_spend_chart([food, clothing, auto]))
