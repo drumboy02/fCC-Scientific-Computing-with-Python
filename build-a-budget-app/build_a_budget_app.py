@@ -97,6 +97,13 @@ def create_spend_chart(categories):
         while len(p) < 4:
             p = ' ' * (3 - len(p)) + p + '|'
             # print(p)
+        for percent in cspent:
+            # print(percent,'>=', n, percent >= n)
+            if percent >= n:
+                p += ' o '
+            else:
+                p += '   '
+        p += ' '
         result += p + '\n'  
 
     return result
