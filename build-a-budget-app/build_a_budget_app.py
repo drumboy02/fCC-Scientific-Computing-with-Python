@@ -88,26 +88,16 @@ def create_spend_chart(categories):
     print('cnames', cnames)
     print('cspent', cspent)
     print('total_spent', total_spent)
+    for i in range(len(cspent)):
+        cspent[i] = round(cspent[i] / total_spent * 100)
+    print('%', cspent)
 
     for n in range(100, -1, -10):
         p = str(n)
         while len(p) < 4:
             p = ' ' * (3 - len(p)) + p + '|'
             # print(p)
-        result += p + '\n'
-    # bar chart
-    # chart shows the % spent in each category
-    # % calculated with withdraws only and will
-    # be % of amount spent for each category to
-    # total spent for all categories
-
-    # left side labels 0 - 100
-    # bars made from 'o' char
-    # bar height rounded down to nearest 10
-    # horizontal line below bars goes 2 spaces
-    # past final bar
-
-    # category names vertically below bar    
+        result += p + '\n'  
 
     return result
 
