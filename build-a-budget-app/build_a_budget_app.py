@@ -70,27 +70,31 @@ class Category:
         return True
 
 def create_spend_chart(categories):
-    result = 'Percentage spent by category'
-    print(result)
-    for n in range(100, -1, -10):
-        p = str(n)
-        while len(p) < 4:
-            # print(' ' * (3 - len(p)) + p + '|')
-            p = ' ' * (3 - len(p)) + p + '|'
-            print(p)
-        # print('len', len(p), p)
-        # print(str(n) + '|')
+    result = 'Percentage spent by category\n'
     total_spent = 0
+    cnames = []
+    cspent = []
     for category in categories:
+        ctotal = 0
         cname = category.name
-        cbalance = category.balance
+        cnames.append(cname)
         cledger = category.ledger
-        # print(cname, cbalance)
         for item in cledger:
             if item['amount'] < 0:
                 if item['description'][0:8] != 'Transfer':
                     total_spent += item['amount']
+                    ctotal += item['amount']
+        cspent.append(ctotal)
+    print('cnames', cnames)
+    print('cspent', cspent)
     print('total_spent', total_spent)
+
+    for n in range(100, -1, -10):
+        p = str(n)
+        while len(p) < 4:
+            p = ' ' * (3 - len(p)) + p + '|'
+            # print(p)
+        result += p + '\n'
     # bar chart
     # chart shows the % spent in each category
     # % calculated with withdraws only and will
@@ -105,7 +109,7 @@ def create_spend_chart(categories):
 
     # category names vertically below bar    
 
-    return ''
+    return result
 
 '''
 Percentage spent by category
@@ -137,7 +141,7 @@ food.withdraw(10.15, 'groceries')
 food.withdraw(15.89, 'restaurant and more food for dessert')
 clothing = Category('Clothing')
 food.transfer(50, clothing)
-print(food)
+# print(food)
 
 clothing = Category('Clothing')
 clothing.deposit(200, 'initial deposit')
