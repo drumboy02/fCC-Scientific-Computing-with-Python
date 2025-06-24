@@ -1,3 +1,5 @@
+** start of main.py **
+
 class Category:
     def __init__(self, name):
         self.ledger = []
@@ -154,3 +156,6 @@ print(create_spend_chart([food, clothing, auto]))
 # print(food)
 # print(clothing)
 # print(auto)
+
+** end of main.py **
+
