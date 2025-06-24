@@ -85,12 +85,12 @@ def create_spend_chart(categories):
                     total_spent += item['amount']
                     ctotal += item['amount']
         cspent.append(ctotal)
-    print('cnames', cnames)
-    print('cspent', cspent)
-    print('total_spent', total_spent)
+    # print('cnames', cnames)
+    # print('cspent', cspent)
+    # print('total_spent', total_spent)
     for i in range(len(cspent)):
         cspent[i] = round(cspent[i] / total_spent * 100)
-    print('%', cspent)
+    # print('%', cspent)
 
     for n in range(100, -1, -10):
         p = str(n)
@@ -104,8 +104,29 @@ def create_spend_chart(categories):
             else:
                 p += '   '
         p += ' '
-        result += p + '\n'  
-
+        result += p + '\n'
+    result += '    ' + '---' * len(cspent) + '-\n'
+    nlen = []
+    vnames = []
+    for name in cnames:
+        nlen.append(len(name))
+    lname = max(nlen)
+    for name in cnames:
+        if len(name) < lname:
+            spaces = (lname - len(name)) * ' '
+            name += spaces
+        vnames.append(name)
+    # print(vnames)
+    string = ''
+    for i in range(lname):
+        string += '    '
+        for j in range(len(vnames)):
+            string += ' ' + vnames[j][i] + ' '
+            # print(string)
+            if j == len(vnames) - 1:
+                string += ' \n'
+        # print('done')
+    result += string
     return result
 
 '''
