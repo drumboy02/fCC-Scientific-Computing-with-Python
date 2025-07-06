@@ -22,19 +22,13 @@ class Rectangle:
         return (self.width**2 + self.height**2)**.5
 
     def get_picture(self):
-        if self.height > 50:
+        if self.height > 50 or self.width > 50:
             return 'Too big for picture.'
         line = ('*' * self.width + '\n')
         return line * self.height
 
     def get_amount_inside(self, shape):
-        if type(shape) == Rectangle:
-            return 'Rectangle'
-            # area = self.get_area()
-            # perimeter = self.get_perimeter()
-        elif type(shape) == Square:
-            return 'Square'
-        return # (area, perimeter)
+        return self.get_area() // shape.get_area()
 
 class Square(Rectangle):
     def __init__(self, side):
@@ -49,14 +43,20 @@ class Square(Rectangle):
         self.width = s
         self.height = s
 
-test = Rectangle()
-test.set_width(5)
-test.set_height(10)
-print(test.get_diagonal())
-print(test.get_picture())
-print(test.get_amount_inside(test))
-sq = Square(2)
+rect = Rectangle(10, 5)
+print(rect.get_area())
+rect.set_height(3)
+print(rect.get_perimeter())
+print(rect)
+print(rect.get_picture())
+
+sq = Square(9)
+print(sq.get_area())
 sq.set_side(4)
-print(sq.get_amount_inside(sq))
-print(sq.get_picture())
+print(sq.get_diagonal())
 print(sq)
+print(sq.get_picture())
+
+rect.set_height(8)
+rect.set_width(16)
+print(rect.get_amount_inside(sq))
