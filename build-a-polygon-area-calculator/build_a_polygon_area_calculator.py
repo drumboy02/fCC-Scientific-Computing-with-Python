@@ -19,7 +19,10 @@ class Rectangle:
         return (self.width**2 + self.height**2)**.5
 
     def get_picture(self):
-        pass
+        if self.height > 50:
+            return 'Too big for picture.'
+        line = ('*' * self.width + '\n')
+        return line * self.height
 
     def get_amount_inside(self):
         pass
@@ -31,3 +34,4 @@ test = Rectangle()
 test.set_width(4)
 test.set_height(2)
 print(test.get_diagonal())
+print(test.get_picture())
