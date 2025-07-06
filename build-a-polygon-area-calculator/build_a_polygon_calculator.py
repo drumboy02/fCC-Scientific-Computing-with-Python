@@ -13,10 +13,10 @@ class Rectangle:
         return self.width * self.height
 
     def get_perimeter(self):
-        pass
+        return 2 * self.width + 2 * self.height
 
     def get_diagonal(self):
-        pass
+        return (self.width**2 + self.height**2)**.5
 
     def get_picture(self):
         pass
@@ -30,4 +30,4 @@ class Square(Rectangle):
 test = Rectangle()
 test.set_width(4)
 test.set_height(2)
-print(test.get_area())
+print(test.get_diagonal())
