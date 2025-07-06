@@ -41,6 +41,9 @@ class Square(Rectangle):
         super().__init__(width=side, height=side)
         self.side = side
 
+    def __str__(self):
+        return f'Square(side={self.side})'
+
     def set_side(self, s):
         self.side = s
         self.width = s
@@ -56,3 +59,4 @@ sq = Square(2)
 sq.set_side(4)
 print(sq.get_amount_inside(sq))
 print(sq.get_picture())
+print(sq)
