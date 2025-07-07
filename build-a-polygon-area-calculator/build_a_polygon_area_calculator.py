@@ -43,6 +43,12 @@ class Square(Rectangle):
         self.width = s
         self.height = s
 
+    def set_width(self, w):
+        self.set_side(w)
+
+    def set_height(self, h):
+        self.set_side(h)
+
 rect = Rectangle(10, 5)
 print(rect.get_area())
 rect.set_height(3)
