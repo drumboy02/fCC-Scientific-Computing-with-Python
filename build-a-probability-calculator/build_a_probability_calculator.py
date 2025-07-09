@@ -26,7 +26,7 @@ class Hat:
         return res
 
 def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
-    print('hat:', hat.contents)
+    # print('hat:', hat.contents)
     print('expected_balls:', expected_balls)
     print('num_balls_drawn:', num_balls_drawn)
     print('num_experiments:', num_experiments)
@@ -35,8 +35,20 @@ def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
     for exp in range(num_experiments):
         cp = copy.deepcopy(hat)
         d_balls = cp.draw(num_balls_drawn)
+        success = 0
+        items = expected_balls.items()
         print(f'experiment #{exp + 1}:\n {d_balls}')
+
+        for k, v in items:
+            if d_balls.count(k) >= v:
+                success += 1
+            else:
+                success = False
+        if success == len(items):
+            M += 1 
+    
     print('t_balls:', t_balls)
+    print('M:', M)
 
 '''
 hat1 = Hat(yellow=3, blue=2, green=6)
@@ -51,4 +63,4 @@ hat = Hat(black=6, red=4, green=3)
 probability = experiment(hat=hat,
                   expected_balls={'red':2,'green':1},
                   num_balls_drawn=5,
-                  num_experiments=2000)
+                  num_experiments=2)
